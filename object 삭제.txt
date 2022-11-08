@@ -1,0 +1,21 @@
+local function ch_deleteobject(player, choice)
+    local source = source
+    local user_id = vRP.getUserId({source})
+    local name = GetPlayerName(source)
+    TriggerClientEvent('chat:addMessage', -1, {
+        args = {"시스템", "핵으로 인해 모든 오브젝트가 삭제됩니다." .. GetPlayerName(source) .. ''},
+        template = '<link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet"> <div style="border-radius: 1px; width: 100%; height: auto; background-color: rgba(255,0,0, 0.5); color: white;"><div id="notice-content" style="display:flex; padding: 15px; flex-direction: column;"><div id="notice-content-title" style="display: flex; flex-direction: row; justify-content: left; width: 100%;"><div style="display: flex; flex-direction: column; justify-content: center;"><i class=></i></div><div style="display: flex; flex-direction: column; justify-content: center;"><h4 style="margin-left: 10px;"> 🌟 HACK SYSTEM</br>───────────────────────────────────────────────────</br>10초후 서버 전체 엔티티가 삭제됩니다. ({1})</h4></div></div></p></div></div></div>',
+      })
+      Wait(10000)
+      for i,v in pairs(GetAllObjects()) do 
+         DeleteEntity(v)
+      end
+      TriggerClientEvent('chat:addMessage', -1, {
+        args = {"", "" .. GetPlayerName(source) .. ''},
+        template = '<link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet"> <div style="border-radius: 1px; width: 100%; height: auto; background-color: rgba(255,0,0, 0.5); color: white;"><div id="notice-content" style="display:flex; padding: 15px; flex-direction: column;"><div id="notice-content-title" style="display: flex; flex-direction: row; justify-content: left; width: 100%;"><div style="display: flex; flex-direction: column; justify-content: center;"><i class=></i></div><div style="display: flex; flex-direction: column; justify-content: center;"><h4 style="margin-left: 10px;"> 🌟 HACK SYSTEM</br>───────────────────────────────────────────────────</br>엔티티가 정상적으로 삭제되었습니다. (양해 감사합니다.)</h4></div></div></p></div></div></div>',
+      })
+end
+
+if vRP.hasPermission(user_id,"player.deleteob") then
+                menu["*모든 오브젝트 삭제"] = {ch_deleteobject}
+                end
